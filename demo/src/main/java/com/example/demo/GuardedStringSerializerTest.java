@@ -22,12 +22,15 @@ public class GuardedStringSerializerTest  {
     
     private final GuardedStringSerializer serializer = new GuardedStringSerializer();
     
+    
+    // test comment pushing it from eclipse
     @Test
     public void serialize(
             @Mock JsonGenerator jgen, 
             @Mock SerializerProvider sp) throws IOException {
         serializer.serialize(new GuardedString(), jgen, sp);
         verify(jgen).writeBooleanField(READONLY, false);
+        verify(jgen).writeBooleanField(DISPOSED, false);
         verify(jgen).writeBooleanField(DISPOSED, false);
         verify(jgen).writeStringField(eq(ENCRYPTED_BYTES), anyString());
         verify(jgen).writeStringField(eq(BASE64_SHA1_HASH), anyString());
